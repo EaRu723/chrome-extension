@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "Text & URL Capture",
+  "version": "1.0",
+  "description": "Capture page URLs and highlighted text",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "contextMenus",
+    "scripting",
+    "notifications",
+    "windows",
+    "action"
+  ],
+  "host_permissions": [
+    "https://jsonplaceholder.typicode.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icons/Frame1.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "128": "icons/Frame1.png"
+  },
+  "commands": {
+    "capture-text": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "mac": "Command+Shift+Y"
+      },
+      "description": "Capture selected text or URL"
+    }
+  }
+} 
