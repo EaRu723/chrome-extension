@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Text & URL Capture",
+  "name": "Y - Bookmarker",
   "version": "1.0",
-  "description": "Capture page URLs and highlighted text",
+  "description": "Save bookmarks and highlights on Y",
   "permissions": [
     "storage",
     "activeTab",
@@ -10,17 +10,20 @@
     "scripting",
     "notifications",
     "windows",
-    "action"
+    "cookies"
   ],
   "host_permissions": [
-    "https://jsonplaceholder.typicode.com/*"
+    "https://ynot.lol/*",
+    "https://ynot.lol/",
+    "http://127.0.0.1:8000/*"
   ],
   "action": {
     "default_popup": "popup.html",
     "default_icon": "icons/Frame1.png"
   },
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background.js",
+    "type: ": "module"
   },
   "icons": {
     "128": "icons/Frame1.png"
@@ -34,4 +37,4 @@
       "description": "Capture selected text or URL"
     }
   }
-} 
+}

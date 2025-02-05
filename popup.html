@@ -1,34 +1,50 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Text & URL Capture</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="w-80 p-4 bg-gray-100">
-  <div class="space-y-4">
-    <!-- Note Input Section -->
-    <div id="noteSection" class="hidden space-y-4">
-      <h2 class="text-lg font-semibold text-gray-800">Add Note</h2>
-      <div class="text-gray-800 text-sm" id="capturedText"></div>
-      <textarea 
-        id="noteInput" 
-        class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
-        rows="3" 
-        placeholder="Add your note here..."></textarea>
-      <div class="flex justify-end">
-        <button id="saveBtn" class="px-3 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 text-sm">Save</button>
+  <head>
+    <title>Text & URL Capture</title>
+    <link rel="stylesheet" href="output.css" />
+  </head>
+  <body class="w-80 p-4 bg-gray-100">
+    <div class="space-y-2">
+      <!-- Note Input Section -->
+      <div id="noteSection" class="space-y-2">
+        <h2 class="text-lg font-semibold text-gray-800">Bookmark on Y</h2>
+        <div class="space-y-1">
+          <div
+            class="text-xs text-gray-500 font-mono break-all"
+            id="currentUrl"
+          ></div>
+          <div class="text-gray-800 text-sm" id="capturedText"></div>
+        </div>
+        <textarea
+          id="noteInput"
+          class="w-full p-2 border border-gray-300 rounded-md focus:border-black focus:ring-0 focus:outline-none resize-none overflow-hidden"
+          rows="3"
+          placeholder="Add a note ..."
+        ></textarea>
+        <div class="flex justify-end">
+          <button
+            id="saveBtn"
+            class="px-3 py-1 rounded-md bg-black text-white text-sm cursor-pointer"
+          >
+            Save
+          </button>
+        </div>
       </div>
-    </div>
 
-    <!-- Last Saved Section -->
-    <div id="lastSavedSection" class="hidden">
-      <div class="bg-white p-3 rounded-lg shadow">
-        <p class="text-gray-800" id="lastSavedText"></p>
-        <p class="text-sm text-blue-600 mt-1" id="lastSavedNote"></p>
-        <p class="text-xs text-gray-500 mt-1">Just saved</p>
+      <!-- Last Saved Section -->
+      <div id="lastSavedSection" class="hidden">
+        <div class="bg-white p-3 rounded-lg shadow">
+          <div
+            class="text-xs text-gray-500 font-mono break-all"
+            id="savedUrl"
+          ></div>
+          <p class="text-sm mt-1" id="lastSavedNote"></p>
+          <p class="text-gray-800" id="lastSavedText"></p>
+          <p class="text-xs text-gray-500 mt-1">Saved</p>
+        </div>
       </div>
     </div>
-  </div>
-  <script src="popup.js"></script>
-</body>
-</html> 
+    <script src="popup.js"></script>
+  </body>
+</html>

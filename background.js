@@ -1,24 +1,42 @@
 chrome.runtime.onInstalled.addListener(() => {
-  chrome.contextMenus.create({
-    id: "captureText",
-    title: "Capture Selected Text",
-    contexts: ["selection"]
-  });
+  try {
+    chrome.contextMenus.create({
+      id: "captureText",
+      title: "Share highlight",
+      contexts: ["selection"],
+    });
+  } catch (error) {
+    console.error("Context menu creation failed:", error);
+  }
 });
+
+chrome.cookies.get(
+  { url: "https://ynot.lol/", name: "session" },
+  function (cookie) {
+    if (cookie) {
+      console.log("Cookie value:", cookie.value);
+    } else {
+      if (chrome.runtime.lastError) {
+        console.error(chrome.runtime.lastError);
+      }
+      console.log("Not authenticated!");
+    }
+  }
+);
 
 async function captureContent() {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-  
+
   // Inject content script to get selected text
-  const [{result}] = await chrome.scripting.executeScript({
+  const [{ result }] = await chrome.scripting.executeScript({
     target: { tabId: tab.id },
-    function: () => window.getSelection().toString()
+    function: () => window.getSelection().toString(),
   });
 
   const capturedData = {
     text: result || "",
     url: tab.url,
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   };
 
   // Store temporary capture data and open popup
@@ -32,7 +50,7 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
     const capturedData = {
       text: info.selectionText,
       url: tab.url,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
 
     await chrome.storage.local.set({ tempCapture: capturedData });
@@ -45,4 +63,4 @@ chrome.commands.onCommand.addListener((command) => {
   if (command === "capture-text") {
     captureContent();
   }
-}); 
+});
